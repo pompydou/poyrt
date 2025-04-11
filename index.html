@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    /* Forcer la couleur bleue */
+    button.bg-\[\#3B82F6\] {
+      background-color: #158454 !important;
+    }
+    
+    /* État hover */
+    button.hover\:bg-\[\#2563EB\]:hover {
+      background-color: #158454 !important;
+    }
+  </style>
+
+</head>
+<body class="bg-white text-[#111827]">
+  <div class="min-h-screen flex flex-col md:flex-row">
+    <!-- Colonne gauche -->
+    <div class="md:w-1/2 hidden md:flex items-center justify-center bg-white p-8">
+        <div class="text-center max-w-md space-y-5 text-black">
+          <img 
+            src="https://c7.alamy.com/compfr/2xrkbhe/concept-de-reunion-parent-enseignant-engager-une-discussion-sur-les-progres-des-eleves-parents-et-enseignant-communiquant-dans-une-salle-de-classe-illustration-vectorielle-2xrkbhe.jpg" 
+            alt="Illustration" 
+          />
+      
+          <h2 class="text-4xl font-extrabold text-black">Bienvenue sur EducAlliance</h2>
+          
+          <p class="text-lg text-black">
+            Une plateforme innovante qui connecte les parents et les enseignants pour un meilleur suivi scolaire.
+          </p>
+      
+         
+      
+          <p class="text-sm text-black">
+            Rejoignez-nous dès aujourd'hui pour contribuer à la réussite éducative de nos enfants.
+          </p>
+      
+          <div class="mt-6 text-sm text-black">
+            <p class="font-semibold">Contactez-nous :</p>
+            <p>📞 <a href="tel:+22890000000" class="underline">+228 90 00 00 00</a></p>
+            <p>✉️ <a href="mailto:support@educalliance.tg" class="underline">support@educalliance.tg</a></p>
+            <p>📍 Tokoin, Lomé - Togo</p>
+          </div>
+        </div>
+      </div>
+      
+      
+
+    <!-- Colonne droite -->
+    <div class="w-full md:w-1/2 flex items-center justify-center p-4">
+      <div x-data="registrationForm()" class="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8">
+
+        <!-- Barre de progression -->
+        <div class="flex items-center justify-between mb-6 relative">
+          <div class="absolute top-3 left-0 right-0 h-1 bg-[#E5E7EB] rounded-full z-0"></div>
+          <template x-for="step in 3">
+            <div class="relative z-10 flex-1 text-center">
+              <div :class="{
+                'bg-green-500': currentStep > step,
+                'bg-[#3B82F6]': currentStep === step,
+                'bg-white border-2 border-[#3B82F6] text-[#3B82F6]': currentStep < step
+              }" class="h-6 w-6 mx-auto rounded-full flex items-center justify-center text-sm font-semibold">
+                <span x-text="step"></span>
+              </div>
+              <span class="text-sm block mt-1" x-text="'Étape ' + step"></span>
+            </div>
+          </template>
+        </div>
+
+        <!-- Étape 1: Informations de base -->
+        <div x-show="currentStep === 1" class="space-y-4">
+          <h2 class="text-xl font-semibold mb-2">Informations de base</h2>
+
+          <div>
+            <label class="block font-medium">Qui êtes-vous ?</label>
+            <div class="flex space-x-4 mt-1">
+              <label class="flex items-center">
+                <input type="radio" value="enseignant" x-model="role" class="mr-2" /> Enseignant
+              </label>
+              <label class="flex items-center">
+                <input type="radio" value="parent" x-model="role" class="mr-2" /> Parent
+              </label>
+            </div>
+          </div>
+
+          <input type="text" placeholder="Nom complet" class="w-full border rounded p-2" x-model="form.nom" />
+          <input type="email" placeholder="Adresse email" class="w-full border rounded p-2" x-model="form.email" />
+          <input type="password" placeholder="Mot de passe" class="w-full border rounded p-2" x-model="form.password" />
+          <input type="tel" placeholder="Téléphone" class="w-full border rounded p-2" x-model="form.telephone" />
+
+          <select class="w-full border rounded p-2" x-model="form.sexe">
+            <option disabled selected>Sélectionnez votre sexe</option>
+            <option>Homme</option>
+            <option>Femme</option>
+            <option>Autre</option>
+          </select>
+
+                <select class="w-full border rounded p-2 mb-4" x-model="form.ville">
+            <option disabled selected>Sélectionnez votre ville/région</option>
+            <!-- Quartiers de Lomé -->
+            <option>Tokoin (Lomé)</option>
+            <option>Bè (Lomé)</option>
+            <option>Agoè (Lomé)</option>
+            <option>Nyékonakpoè (Lomé)</option>
+            <option>Dékon (Lomé)</option>
+            <option>Forever (Lomé)</option>
+            <option>Adidogomé (Lomé)</option>
+        
+            <!-- Autres villes -->
+            <option>Quartier Alédjo (Sokodé)</option>
+            <option>Quartier Sarakawa (Kara)</option>
+            <option>Quartier Zongo (Atakpamé)</option>
+            <option>Hédzranawoé (Kpalimé)</option>
+            <option>Logopé (Kpalimé)</option>
+            <option>Quartier Nayiégou (Dapaong)</option>
+            <option>Agoè-Nyivé (Tsévié)</option>
+            <option>Quartier Gbétché (Aného)</option>
+            <option>Quartier Lama-Tessi (Bassar)</option>
+            <option>Quartier Kpangalam (Mango)</option>
+        </select>
+
+             <div class="mt-6">
+                <button @click="nextStep()" 
+                class="w-full bg-[#3B82F6] text-white font-semibold py-3 rounded-md hover:bg-[#2563EB] transition border border-[#3B82F6] hover:border-[#2563EB]">
+          Suivant
+        </button>
+              </div>
+        </div>
+
+        <!-- Étape 2: Spécifique au rôle -->
+        <div x-show="currentStep === 2" class="space-y-4">
+          <h2 class="text-xl font-semibold mb-2" x-text="role === 'enseignant' ? 'Informations Enseignant' : 'Informations Parent'"></h2>
+
+          <!-- Enseignant -->
+          <template x-if="role === 'enseignant'">
+            <div class="space-y-4">
+              <label class="mt-4">Niveau d’enseignement préféré</label>
+              <div class="flex flex-wrap gap-2">
+                <template x-for="niveau in Object.keys(matieresParNiveau)" :key="niveau">
+                  <label>
+                    <input type="checkbox" :value="niveau" x-model="form.niveaux" class="mr-1"/> <span x-text="niveau"></span>
+                  </label>
+                </template>
+              </div>
+
+              <template x-for="niveau in form.niveaux" :key="niveau">
+                <div class="border rounded p-3">
+                  <h3 class="text-md font-semibold mb-2" x-text="niveau"></h3>
+                  <div class="grid grid-cols-2 gap-2">
+                    <template x-for="matiere in matieresParNiveau[niveau]" :key="matiere">
+                      <label class="flex items-center space-x-2">
+                        <input type="checkbox" :value="matiere" x-model="form.matieres" />
+                        <span x-text="matiere"></span>
+                      </label>
+                    </template>
+                  </div>
+                </div>
+              </template>
+
+              <template x-if="matiereError">
+                <p class="text-red-600 text-sm">Veuillez sélectionner au moins 3 matières.</p>
+              </template>
+
+              <input type="number" placeholder="Années d’expérience" class="w-full border rounded p-2" x-model="form.experience" />
+              <input type="file" accept="application/pdf,image/*" class="w-full" />
+              <input type="file" accept="image/*" class="w-full" />
+              <label class="flex items-center"><input type="checkbox" class="mr-2" /> Je certifie que les informations sont exactes</label>
+            </div>
+          </template>
+          
+
+          <template x-if="role === 'parent'">
+            <div class="space-y-2">
+              <input type="number" placeholder="Nombre d’enfants" class="w-full border rounded p-2" x-model="form.nbEnfants" />
+              <!-- Enfants dynamiques -->
+              <template x-for="i in parseInt(form.nbEnfants || 0)" :key="i">
+                <div class="space-y-1">
+                  <input type="text" :placeholder="'Nom de l\'enfant ' + i" class="w-full border rounded p-2" />
+                  <input type="text" :placeholder="'Niveau de classe de l\'enfant ' + i" class="w-full border rounded p-2" />
+                </div>
+              </template>
+              <input type="file" multiple class="w-full" />
+              <label class="flex items-center"><input type="checkbox" class="mr-2" /> J'accepte les conditions d'utilisation</label>
+            </div>
+          </template>
+
+          <div class="flex justify-between mt-6">
+            <button @click="prevStep()" 
+                    class="bg-[#3B82F6] text-white py-2 px-6 rounded-md hover:bg-[#2563EB] transition border border-[#3B82F6] hover:border-[#2563EB]">
+              Retour
+            </button>
+            <button @click="nextStep()" 
+                    class="bg-[#3B82F6] text-white py-2 px-6 rounded-md hover:bg-[#2563EB] transition border border-[#3B82F6] hover:border-[#2563EB]">
+              Suivant
+            </button>
+          </div>
+        </div>
+
+        <!-- Étape 3: Paiement -->
+        <div x-show="currentStep === 3" class="space-y-4">
+          <h2 class="text-xl font-semibold mb-2">Paiement</h2>
+          <p>Choisissez votre méthode de paiement :</p>
+          <div class="space-y-2">
+            <label class="block"><input type="radio" name="paiement" class="mr-2" /> Mobile Money (Yass)</label>
+            <label class="block"><input type="radio" name="paiement" class="mr-2" /> Flooz</label>
+          </div>
+          <div class="flex justify-between mt-6">
+            <button @click="prevStep()" 
+                    class="bg-[#3B82F6] text-white py-2 px-6 rounded-md hover:bg-[#2563EB] transition border border-[#3B82F6] hover:border-[#2563EB]">
+              Retour
+            </button>
+            <button class="bg-[#3B82F6] text-white py-2 px-6 rounded-md hover:bg-[#2563EB] transition border border-[#3B82F6] hover:border-[#2563EB]">
+              Créer mon compte
+            </button>
+          </div>
+        </div>
+
+        <!-- Lien bas de page -->
+        <p class="mt-6 text-sm text-center">Vous avez déjà un compte ? <a href="#" class="text-[#3B82F6] underline">Se connecter</a></p>
+      </div>
+    </div>
+  </div>
+
+    <script>
+        function registrationForm() {
+          return {
+            currentStep: 1,
+            role: '',
+            matiereError: false,
+            form: {
+              nom: '',
+              email: '',
+              password: '',
+              telephone: '',
+              sexe: '',
+              ville: '',
+              matieres: [],
+              niveaux: [],
+              experience: '',
+              nbEnfants: 0
+            },
+            matieresParNiveau: {
+              "Collège": [
+                "Français", "Mathématiques", "Histoire-Géographie-EMC", "SVT",
+                "Physique-Chimie", "Technologie", "Anglais", "Arts Plastiques", "Éducation Musicale"
+              ],
+              "Lycée Général": [
+                "Spécialité Mathématiques", "Spécialité Physique-Chimie", "Spécialité SVT",
+                "Philosophie", "Anglais", "Espagnol", "Allemand"
+              ],
+              "Lycée Technologique": [
+                "Génie Électrique et Électronique", "Génie Mécanique et Productique",
+                "Génie Biologique", "Génie des Procédés", "Génie des Matériaux",
+                "Génie des Systèmes Industriels", "Génie des Systèmes Numériques"
+              ],
+              "Lycée Professionnel": [
+                "Électrotechnique", "Métiers de la Restauration", "Commerce-Vente", "Maintenance Industrielle"
+              ]
+            },
+            nextStep() {
+              if (this.currentStep === 2 && this.role === 'enseignant') {
+                if (this.form.matieres.length < 3) {
+                  this.matiereError = true;
+                  return;
+                } else {
+                  this.matiereError = false;
+                }
+              }
+              this.currentStep++;
+            },
+            prevStep() {
+              if (this.currentStep > 1) this.currentStep--;
+            }
+          }
+        }
+      </script>
+</body>
+</html>
